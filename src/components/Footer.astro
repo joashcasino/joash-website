@@ -1,0 +1,42 @@
+---
+// Replace the # with your real profile links.
+const columns = [
+  { title: "MENU", links: [{ label: "Projects", href: "#projects" }, { label: "About me", href: "#about" }] },
+  { title: "SOCIALS", links: [{ label: "Facebook", href: "#" }, { label: "Tiktok", href: "#" }, { label: "Instagram", href: "#" }] },
+  { title: "MISC", links: [{ label: "Github", href: "#" }, { label: "LinkedIn", href: "#" }] },
+];
+const email = "joash.santiago.casino@gmail.com";
+---
+
+<footer class="bg-white p-3 md:px-[35px] md:py-[28px]">
+  <div class="relative bg-black px-6 pb-8 pt-12 text-white tracking-[-0.03em] md:min-h-[508px] md:px-[65px] md:pb-[50px] md:pt-[53px]">
+    <div class="mx-auto max-w-[1270px]">
+      <h2 class="font-mirava text-4xl md:text-[46px]">CONTACT</h2>
+      <span class="mt-1.5 block h-px w-full bg-white/50" aria-hidden="true"></span>
+
+      <div class="flex flex-col gap-12 pb-12 pt-10 md:flex-row md:flex-wrap md:gap-[53px] md:pb-[66px] md:pl-[27px] md:pt-[47px]">
+        <div class="flex flex-wrap gap-x-16 gap-y-10 md:gap-x-[120px]">
+          {columns.map((c) => (
+            <div class="flex flex-col gap-6 md:gap-[42px]">
+              <p class="text-xl font-light md:text-2xl">{c.title}</p>
+              <ul class="flex flex-col gap-4 text-lg font-thin md:gap-[25px] md:text-xl">
+                {c.links.map((l) => <li><a href={l.href} class="hover:underline">{l.label}</a></li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <div class="text-lg md:text-xl">
+          <p class="font-bold">Send me an email:</p>
+          <a href={`mailto:${email}`} class="mt-2 block break-all font-light hover:underline">{email}</a>
+        </div>
+        <img src="/images/logo-white.svg" alt="VANV logo" class="w-28 self-end md:absolute md:bottom-[142px] md:right-[104px] md:w-[159px]" />
+      </div>
+
+      <span class="block h-px w-full bg-white/50" aria-hidden="true"></span>
+      <div class="flex flex-col gap-2 pt-6 text-sm font-light text-white/70 sm:flex-row sm:justify-between md:pt-[46px]">
+        <p>© 2026 Joash. All rights reserved.</p>
+        <p>More content in the Future</p>
+      </div>
+    </div>
+  </div>
+</footer>

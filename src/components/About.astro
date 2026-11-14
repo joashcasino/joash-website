@@ -1,0 +1,33 @@
+---
+const bio =
+  "Hi there, I'm Joash, one sleek of a creative, and a passionate developer who enjoys turning ideas into functional realities. I work with productivity tools that help me build websites, create email designs (campaigns, flows, and banners) and make visually appealing video edits. With AI on our side, I take it as an opportunity to expand my knowledge and help me produce the best results without compromising my creative freedom. Working my shift or not, I'd like to be financially capable to do the things that I love, may it be travelling, gaming, and socializing.";
+---
+
+<section id="about" class="relative scroll-mt-16 overflow-hidden bg-white md:min-h-[1346px] md:scroll-mt-[87px]">
+  <!-- black top band -->
+  <div class="absolute inset-x-0 top-0 h-[260px] bg-black sm:h-[330px] md:h-[498px]" aria-hidden="true"></div>
+
+  <!-- faded watermark -->
+  <div class="pointer-events-none absolute inset-x-0 top-[420px] select-none text-center font-black leading-none opacity-5 md:top-[530px]" aria-hidden="true">
+    {[1, 2, 3].map(() => (
+      <p class="bg-gradient-to-b from-black to-[#5c5c5c] bg-clip-text text-[22vw] text-transparent md:text-[264px]">ABOUT ME</p>
+    ))}
+  </div>
+
+  <!-- outline box: white over black, black over white -->
+  <div class="pointer-events-none absolute inset-x-4 bottom-10 top-8 border-[5px] border-white mix-blend-difference md:inset-x-[35px] md:bottom-[79px] md:top-[57px]" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-[1134px] px-10 pb-24 pt-[170px] sm:pt-[220px] md:px-[48px] md:pb-[375px] md:pt-[367px] lg:px-0">
+    <h2 class="bg-gradient-to-b from-white to-[#a1a1a1] bg-clip-text text-[64px] font-black leading-none text-transparent sm:text-[96px] md:text-[151px]">
+      ABOUT ME
+    </h2>
+    <div class="mt-10 flex flex-col items-start gap-10 md:mt-[46px] md:flex-row md:gap-[115px] md:pl-[30px]">
+      <p class="max-w-[666px] flex-1 text-justify text-base font-medium leading-snug tracking-[-0.03em] md:text-xl md:leading-none">
+        {bio}
+      </p>
+      <div class="aspect-[292/407] w-full max-w-[292px] shrink-0 bg-[#D9D9D9]">
+        <!-- Replace with: <img src="/images/me.jpg" alt="Joash" class="h-full w-full object-cover" /> -->
+      </div>
+    </div>
+  </div>
+</section>

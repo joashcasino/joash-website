@@ -1,0 +1,42 @@
+---
+interface Props {
+  title: string;
+  tools: string[];
+  video?: string;
+  reverse?: boolean;
+  lineLeft?: boolean;
+  bleed?: boolean;
+}
+const { title, tools, video, reverse = false, lineLeft = false, bleed = false } = Astro.props;
+---
+
+<article
+  class:list={[
+    "relative flex flex-col items-center gap-10 bg-[linear-gradient(90deg,rgba(217,217,217,0.19),rgba(0,0,0,0.19))] md:flex-row md:gap-[110px]",
+    reverse && "md:flex-row-reverse",
+    bleed ? "md:mr-[-153px]" : "",
+  ]}
+>
+  <div class="flex aspect-[347/393] w-full shrink-0 items-center justify-center overflow-hidden bg-[#D9D9D9] sm:aspect-video md:aspect-auto md:h-[393px] md:w-[347px]">
+    {video ? (
+      <video src={video} class="h-full w-full object-cover" autoplay muted loop playsinline />
+    ) : (
+      <span class="text-xl font-thin text-black">[video placeholder]</span>
+    )}
+  </div>
+
+  <div class="flex w-full flex-1 flex-col items-center gap-10 px-6 pb-10 md:gap-[72px] md:px-0 md:pb-0">
+    <div class:list={["flex w-full items-center gap-[39px]", lineLeft && "flex-row-reverse"]}>
+      <h3 class="shrink-0 font-mirava text-2xl tracking-[0.3em] text-white md:text-[35px] md:tracking-[0.34em]">{title}</h3>
+      <span class="h-px flex-1 bg-white" aria-hidden="true"></span>
+    </div>
+    <ul class="flex max-w-[565px] flex-wrap items-center justify-center gap-x-6 gap-y-3 text-base font-extralight text-white md:justify-start md:gap-x-[52px] md:text-lg">
+      {tools.map((t, i) => (
+        <li class="flex items-center gap-6 md:gap-[52px]">
+          {i > 0 && <span class="size-[7px] rounded-full bg-white" aria-hidden="true" />}
+          <span>{t}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</article>

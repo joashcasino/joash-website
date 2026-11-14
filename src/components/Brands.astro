@@ -1,0 +1,23 @@
+---
+const brands = [
+  { name: "OMII", src: "/images/brand-omii.svg", w: 155 },
+  { name: "JH Studios", src: "/images/brand-jh-studios.png", w: 139 },
+  { name: "MAGS Skin", src: "/images/brand-mags.svg", w: 362 },
+  { name: "The Fleece Company", src: "/images/brand-fleece.svg", w: 342 },
+  { name: "Nordband", src: "/images/brand-nordband.png", w: 135 },
+];
+---
+
+<section
+  class="bg-white bg-cover bg-top px-6 pb-24 pt-16 md:min-h-[666px] md:pb-[93px] md:pt-[79px]"
+  style="background-image: url('/images/bg-brands.jpg');"
+>
+  <h2 class="text-center font-mirava text-2xl md:text-[35px]">BRANDS I WORKED WITH</h2>
+  <ul class="mx-auto mt-10 flex max-w-[1200px] flex-wrap justify-center md:mt-[59px]">
+    {brands.map((b) => (
+      <li class="flex h-32 w-full items-center justify-center px-6 sm:w-1/2 md:h-[200px] lg:w-[400px]">
+        <img src={b.src} alt={b.name} style={`width:${b.w}px`} class="h-auto max-w-[80%]" loading="lazy" />
+      </li>
+    ))}
+  </ul>
+</section>

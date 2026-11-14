@@ -1,0 +1,20 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+
+// Add a video path (e.g. "/videos/omii.mp4") to show a video instead of the placeholder.
+const projects = [
+  { title: "OMII Website", tools: ["Claude AI - Agentic system", "Codex", "Shopify", "VS Code"] },
+  { title: "TFC Video Edit", tools: ["Claude MCP", "ChatGPT Mcp", "Higgsfield", "Adobe Creative Cloud", "Premiere Pro", "Capcut"], reverse: true, lineLeft: true },
+  { title: "Email Designs", tools: ["Figma", "Adobe Firefly", "Pinterest", "Dribbble"] },
+];
+---
+
+<section
+  id="projects"
+  class="scroll-mt-16 overflow-hidden bg-black bg-cover bg-center px-6 py-24 md:min-h-[1484px] md:scroll-mt-[87px] md:pb-[160px] md:pt-[156px]"
+  style="background-image: url('/images/bg-showcase.jpg');"
+>
+  <div class="mx-auto flex max-w-[1166px] flex-col gap-10 md:gap-0">
+    {projects.map((p) => <ProjectCard {...p} />)}
+  </div>
+</section>

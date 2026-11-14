@@ -1,0 +1,43 @@
+---
+// Free form handling: create a form at https://formspree.io, then paste your form ID below.
+const FORMSPREE_ID = "YOUR_FORM_ID";
+const fieldLabel = "text-[13px] tracking-[0.1em] text-black/70";
+const input = "w-full border border-black/25 bg-white px-4 py-[15px] text-base font-light placeholder:text-black/40 focus:border-black focus:outline-none";
+---
+
+<section id="contact" class="scroll-mt-16 bg-white px-6 py-20 md:scroll-mt-[87px] md:py-[120px]">
+  <div class="mx-auto flex max-w-[1200px] flex-col gap-14 lg:flex-row lg:gap-24">
+    <div class="flex flex-1 flex-col gap-7">
+      <p class="text-sm tracking-[0.3em] text-black/60">CONTACT</p>
+      <h2 class="font-mirava text-3xl leading-tight tracking-[0.2em] md:text-[35px]">LET'S WORK<br />TOGETHER</h2>
+      <span class="h-px w-[120px] bg-black/50" aria-hidden="true"></span>
+      <p class="text-lg font-light leading-normal md:text-xl">
+        Have a project in mind? Send me a message and I'll get back to you as soon as I can.
+      </p>
+      <dl class="flex flex-col gap-5">
+        <div>
+          <dt class="text-xs tracking-[0.3em] text-black/50">EMAIL</dt>
+          <dd class="mt-1.5 break-all text-lg"><a href="mailto:joash.santiago.casino@gmail.com" class="hover:underline">joash.santiago.casino@gmail.com</a></dd>
+        </div>
+        <div>
+          <dt class="text-xs tracking-[0.3em] text-black/50">LOCATION</dt>
+          <dd class="mt-1.5 text-lg">Iligan City, Philippines</dd>
+        </div>
+      </dl>
+    </div>
+
+    <form
+      action={`https://formspree.io/f/${FORMSPREE_ID}`}
+      method="POST"
+      class="flex flex-1 flex-col gap-5 border border-black/15 bg-[#f7f7f7] p-6 sm:p-10"
+    >
+      <label class="flex flex-col gap-2"><span class={fieldLabel}>Name</span><input name="name" required class={input} placeholder="Your name" /></label>
+      <label class="flex flex-col gap-2"><span class={fieldLabel}>Email</span><input type="email" name="email" required class={input} placeholder="you@email.com" /></label>
+      <label class="flex flex-col gap-2"><span class={fieldLabel}>Project type</span><input name="project_type" class={input} placeholder="Email design, website, video edit..." /></label>
+      <label class="flex flex-col gap-2"><span class={fieldLabel}>Message</span><textarea name="message" required rows="5" class={input} placeholder="Tell me about your project"></textarea></label>
+      <button type="submit" class="self-start bg-black px-9 py-[18px] text-sm font-medium tracking-[0.15em] text-white transition-opacity hover:opacity-80">
+        SEND MESSAGE
+      </button>
+    </form>
+  </div>
+</section>

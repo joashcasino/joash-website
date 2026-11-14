@@ -1,0 +1,14 @@
+---
+const services = ["Freelance", "Video Editing", "Email Marketing Design", "Web Design", "Web Builder"];
+---
+
+<section class="bg-black px-6 py-5 text-white md:py-[25px]">
+  <ul class="mx-auto flex max-w-[1271px] flex-wrap items-center justify-center gap-x-6 gap-y-2 text-base font-light md:justify-between md:text-2xl">
+    {services.map((s, i) => (
+      <li class="flex items-center gap-6 md:gap-[55px]">
+        {i > 0 && <span class="size-2 rounded-full bg-white md:size-2.5" aria-hidden="true" />}
+        <span>{s}</span>
+      </li>
+    ))}
+  </ul>
+</section>

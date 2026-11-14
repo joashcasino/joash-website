@@ -1,0 +1,34 @@
+---
+const row1 = [
+  { name: "Higgsfield", src: "/images/partner-higgsfield.svg", w: 74 },
+  { name: "Shopify", src: "/images/partner-shopify.png", w: 259 },
+  { name: "Anthropic", src: "/images/partner-anthropic.png", w: 71 },
+  { name: "Figma", src: "/images/partner-figma.svg", w: 60 },
+];
+const row2 = [
+  { name: "Codex", src: "/images/partner-codex.svg", w: 80 },
+  { name: "Notion", src: "/images/partner-notion.svg", w: 69 },
+  { name: "ElevenLabs", src: "/images/partner-elevenlabs.svg", w: 272 },
+];
+const logo = (w: number) => `width:${w}px`;
+---
+
+<section
+  class="bg-black bg-cover bg-center px-6 pb-24 pt-28 text-white md:min-h-[721px] md:pb-[143px] md:pt-[169px]"
+  style="background-image: url('/images/bg-partners.jpg');"
+>
+  <div class="relative mx-auto max-w-[1154px] border border-white px-6 pb-16 pt-20 md:px-10 md:pb-[93px] md:pt-[89px]">
+    <span class="absolute left-1/2 top-0 h-[22px] w-[230px] -translate-x-1/2 -translate-y-1/2 bg-black md:w-[299px]" aria-hidden="true"></span>
+    <h2 class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-[38%] whitespace-nowrap text-center font-mirava text-2xl leading-none md:text-[35px]">
+      MY DAILY<br />PARTNERS
+    </h2>
+    <div class="mx-auto flex max-w-[789px] flex-col items-center gap-12 md:gap-[72px]">
+      <ul class="flex w-full flex-wrap items-center justify-center gap-x-12 gap-y-8 md:justify-between">
+        {row1.map((p) => <li><img src={p.src} alt={p.name} style={logo(p.w)} class="h-auto max-w-full" loading="lazy" /></li>)}
+      </ul>
+      <ul class="flex w-full max-w-[655px] flex-wrap items-center justify-center gap-x-12 gap-y-8 md:justify-between">
+        {row2.map((p) => <li><img src={p.src} alt={p.name} style={logo(p.w)} class="h-auto max-w-full" loading="lazy" /></li>)}
+      </ul>
+    </div>
+  </div>
+</section>
