@@ -1,14 +1,38 @@
 ---
 const services = ["Freelance", "Video Editing", "Email Marketing Design", "Web Design", "Web Builder"];
+// The list is repeated so the loop looks seamless.
+const loop = [...services, ...services, ...services, ...services];
 ---
 
-<section class="bg-black px-6 py-5 text-white md:py-[25px]">
-  <ul class="mx-auto flex max-w-[1271px] flex-wrap items-center justify-center gap-x-6 gap-y-2 text-base font-light md:justify-between md:text-2xl">
-    {services.map((s, i) => (
-      <li class="flex items-center gap-6 md:gap-[55px]">
-        {i > 0 && <span class="size-2 rounded-full bg-white md:size-2.5" aria-hidden="true" />}
-        <span>{s}</span>
+<section class="overflow-hidden bg-black py-5 text-white md:py-[25px]" aria-label="Services">
+  <ul class="marquee flex w-max items-center text-base font-light md:text-2xl">
+    {loop.map((s, i) => (
+      <li class="flex shrink-0 items-center" aria-hidden={i >= services.length ? "true" : undefined}>
+        <span class="whitespace-nowrap px-6 md:px-[27px]">{s}</span>
+        <span class="size-2 rounded-full bg-white md:size-2.5" aria-hidden="true" />
       </li>
     ))}
   </ul>
 </section>
+
+<style>
+  .marquee {
+    animation: marquee 30s linear infinite;
+  }
+  .marquee:hover {
+    animation-play-state: paused;
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee {
+      animation: none;
+    }
+  }
+</style>
