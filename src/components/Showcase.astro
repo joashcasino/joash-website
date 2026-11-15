@@ -4,7 +4,7 @@ import ProjectCard from "./ProjectCard.astro";
 // youtube: the video ID from the YouTube link (the part after /shorts/ or watch?v=).
 const projects = [
   { title: "OMII Website", youtube: "VqmPHMXqPRM", tools: ["Claude AI - Agentic system", "Codex", "Shopify", "VS Code"] },
-  { title: "TFC Video Edit", youtube: "oV_YszMlSuk", tools: ["Claude MCP", "ChatGPT Mcp", "Higgsfield", "Adobe Creative Cloud", "Premiere Pro", "Capcut"], reverse: true, lineLeft: true },
+  { title: "Video Edit", youtube: "oV_YszMlSuk", tools: ["Claude MCP", "ChatGPT Mcp", "Higgsfield", "Adobe Creative Cloud", "Premiere Pro", "Capcut"], reverse: true, lineLeft: true },
   { title: "Email Designs", youtube: "XvmPJZRVr48", tools: ["Figma", "Adobe Firefly", "Pinterest", "Dribbble"] },
 ];
 ---
@@ -18,3 +18,19 @@ const projects = [
     {projects.map((p) => <ProjectCard {...p} />)}
   </div>
 </section>
+
+<script>
+  const cards = document.querySelectorAll<HTMLElement>("[data-slide]");
+  const io = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          e.target.classList.add("is-visible");
+          io.unobserve(e.target);
+        }
+      }
+    },
+    { threshold: 0.25 },
+  );
+  cards.forEach((c) => io.observe(c));
+</script>
