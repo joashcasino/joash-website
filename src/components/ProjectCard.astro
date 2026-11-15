@@ -20,15 +20,16 @@ const { title, tools, video, youtube, reverse = false, lineLeft = false, bleed =
 >
   <div
     class:list={[
-      "flex aspect-[347/393] w-full shrink-0 items-center justify-center overflow-hidden sm:aspect-video md:aspect-auto md:h-[393px] md:w-[347px]",
+      "relative flex aspect-[347/393] w-full shrink-0 items-center justify-center overflow-hidden sm:aspect-video md:aspect-auto md:h-[393px] md:w-[347px]",
       youtube || video ? "bg-black" : "bg-[#D9D9D9]",
     ]}
   >
     {youtube ? (
       <iframe
-        src={`https://www.youtube-nocookie.com/embed/${youtube}?rel=0&playsinline=1`}
+        src={`https://www.youtube-nocookie.com/embed/${youtube}?autoplay=1&mute=1&loop=1&playlist=${youtube}&controls=0&disablekb=1&fs=0&iv_load_policy=3&rel=0&playsinline=1`}
         title={`${title} video`}
-        class="aspect-[9/16] h-full"
+        class="pointer-events-none absolute left-0 top-1/2 aspect-[9/16] w-full -translate-y-1/2 scale-[1.15]"
+        tabindex="-1"
         loading="lazy"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin"
