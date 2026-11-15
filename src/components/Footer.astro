@@ -1,11 +1,23 @@
 ---
-// Replace the # with your real profile links.
 const columns = [
   { title: "MENU", links: [{ label: "Projects", href: "#projects" }, { label: "About me", href: "#about" }] },
-  { title: "SOCIALS", links: [{ label: "Facebook", href: "#" }, { label: "Tiktok", href: "#" }, { label: "Instagram", href: "#" }] },
-  { title: "MISC", links: [{ label: "Github", href: "#" }, { label: "LinkedIn", href: "#" }] },
+  {
+    title: "SOCIALS",
+    links: [
+      { label: "Facebook", href: "https://www.facebook.com/joowash" },
+      { label: "Tiktok", href: "https://www.tiktok.com/@joowassh_" },
+      { label: "Instagram", href: "https://www.instagram.com/joowash_/" },
+    ],
+  },
+  {
+    title: "MISC",
+    links: [
+      { label: "Github", href: "https://github.com/joashcasino" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/joash-casi%C3%B1o-b639483a7/" },
+    ],
+  },
 ];
-const email = "joash.santiago.casino@gmail.com";
+const isExternal = (href: string) => href.startsWith("http");
 ---
 
 <footer class="bg-white p-3 md:px-[35px] md:py-[28px]">
@@ -20,14 +32,17 @@ const email = "joash.santiago.casino@gmail.com";
             <div class="flex flex-col gap-6 md:gap-[42px]">
               <p class="text-xl font-light md:text-2xl">{c.title}</p>
               <ul class="flex flex-col gap-4 text-lg font-thin md:gap-[25px] md:text-xl">
-                {c.links.map((l) => <li><a href={l.href} class="hover:underline">{l.label}</a></li>)}
+                {c.links.map((l) => <li>
+                    <a
+                      href={l.href}
+                      class="hover:underline"
+                      target={isExternal(l.href) ? "_blank" : undefined}
+                      rel={isExternal(l.href) ? "noopener noreferrer" : undefined}
+                    >{l.label}</a>
+                  </li>)}
               </ul>
             </div>
           ))}
-        </div>
-        <div class="text-lg md:text-xl">
-          <p class="font-bold">Send me an email:</p>
-          <a href={`mailto:${email}`} class="mt-2 block break-all font-light hover:underline">{email}</a>
         </div>
         <img src="/images/logo-white.svg" alt="VANV logo" class="w-28 self-end md:absolute md:bottom-[142px] md:right-[104px] md:w-[159px]" />
       </div>
