@@ -3,11 +3,12 @@ interface Props {
   title: string;
   tools: string[];
   video?: string;
+  youtube?: string;
   reverse?: boolean;
   lineLeft?: boolean;
   bleed?: boolean;
 }
-const { title, tools, video, reverse = false, lineLeft = false, bleed = false } = Astro.props;
+const { title, tools, video, youtube, reverse = false, lineLeft = false, bleed = false } = Astro.props;
 ---
 
 <article
@@ -17,8 +18,23 @@ const { title, tools, video, reverse = false, lineLeft = false, bleed = false } 
     bleed ? "md:mr-[-153px]" : "",
   ]}
 >
-  <div class="flex aspect-[347/393] w-full shrink-0 items-center justify-center overflow-hidden bg-[#D9D9D9] sm:aspect-video md:aspect-auto md:h-[393px] md:w-[347px]">
-    {video ? (
+  <div
+    class:list={[
+      "flex aspect-[347/393] w-full shrink-0 items-center justify-center overflow-hidden sm:aspect-video md:aspect-auto md:h-[393px] md:w-[347px]",
+      youtube || video ? "bg-black" : "bg-[#D9D9D9]",
+    ]}
+  >
+    {youtube ? (
+      <iframe
+        src={`https://www.youtube-nocookie.com/embed/${youtube}?rel=0&playsinline=1`}
+        title={`${title} video`}
+        class="aspect-[9/16] h-full"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
+    ) : video ? (
       <video src={video} class="h-full w-full object-cover" autoplay muted loop playsinline />
     ) : (
       <span class="text-xl font-thin text-black">[video placeholder]</span>
