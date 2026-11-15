@@ -1,6 +1,9 @@
 ---
-// Free form handling: create a form at https://formspree.io, then paste your form ID below.
-const FORMSPREE_ID = "YOUR_FORM_ID";
+// HOW TO MAKE THIS FORM SEND EMAILS:
+// 1. Sign up free at https://formspree.io and click "New Form".
+// 2. Copy the form ID (the part after /f/ in the endpoint, e.g. "xyzabcd").
+// 3. Paste it below, save, and push. Submissions arrive in your email inbox.
+const FORMSPREE_ID = "mvkakpry";
 const fieldLabel = "text-[13px] tracking-[0.1em] text-black/70";
 const input = "w-full border border-black/25 bg-white px-4 py-[15px] text-base font-light placeholder:text-black/40 focus:border-black focus:outline-none";
 ---
@@ -26,17 +29,60 @@ const input = "w-full border border-black/25 bg-white px-4 py-[15px] text-base f
     </div>
 
     <form
+      id="contact-form"
       action={`https://formspree.io/f/${FORMSPREE_ID}`}
       method="POST"
       class="flex flex-1 flex-col gap-5 border border-black/15 bg-[#f7f7f7] p-6 sm:p-10"
     >
+      <!-- spam trap: real people never fill this in -->
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+      <input type="hidden" name="_subject" value="New portfolio inquiry" />
       <label class="flex flex-col gap-2"><span class={fieldLabel}>Name</span><input name="name" required class={input} placeholder="Your name" /></label>
       <label class="flex flex-col gap-2"><span class={fieldLabel}>Email</span><input type="email" name="email" required class={input} placeholder="you@email.com" /></label>
       <label class="flex flex-col gap-2"><span class={fieldLabel}>Project type</span><input name="project_type" class={input} placeholder="Email design, website, video edit..." /></label>
       <label class="flex flex-col gap-2"><span class={fieldLabel}>Message</span><textarea name="message" required rows="5" class={input} placeholder="Tell me about your project"></textarea></label>
-      <button type="submit" class="self-start bg-black px-9 py-[18px] text-sm font-medium tracking-[0.15em] text-white transition-opacity hover:opacity-80">
+      <button type="submit" class="self-start bg-black px-9 py-[18px] text-sm font-medium tracking-[0.15em] text-white transition-opacity hover:opacity-80 disabled:opacity-50">
         SEND MESSAGE
       </button>
+      <p data-status class="hidden text-sm" role="status"></p>
     </form>
   </div>
 </section>
+
+<script>
+  // Sends the form without leaving the page, then shows a message.
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  if (form) {
+    const status = form.querySelector<HTMLElement>("[data-status]")!;
+    const button = form.querySelector<HTMLButtonElement>("button[type=submit]")!;
+    const show = (msg: string, ok: boolean) => {
+      status.textContent = msg;
+      status.classList.remove("hidden");
+      status.classList.toggle("text-green-700", ok);
+      status.classList.toggle("text-red-700", !ok);
+    };
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      button.disabled = true;
+      button.textContent = "SENDING...";
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" },
+        });
+        if (res.ok) {
+          form.reset();
+          show("Thanks! Your message was sent. I'll get back to you soon.", true);
+        } else {
+          show("Something went wrong. Please try again or reach me on my socials.", false);
+        }
+      } catch {
+        show("Network error. Please check your connection and try again.", false);
+      } finally {
+        button.disabled = false;
+        button.textContent = "SEND MESSAGE";
+      }
+    });
+  }
+</script>
